@@ -1,10 +1,12 @@
-from .task import Task
+from task import Task
+from storage import load_tasks
+from storage import save_tasks
 
 class TodoList:
     """ Manage a collection of tasks"""
 
     def __init__(self) :
-        self.tasks: list[Task] = []
+        self.tasks: list[Task] = [Task.from_dict(data) for data in load_tasks()]
 
     def add(self, task: Task) -> None:
         self.tasks.append(task)

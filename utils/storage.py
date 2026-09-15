@@ -2,7 +2,7 @@ import json
 
 def save_tasks(tasks: list[dict]) -> None:
     with open("data/tasks.json", "w") as file:
-        json.dump(tasks, file,indent = 4)
+        json.dump([tasks.to_dict() for task in tasks], file, indent = 4)
 
 def load_tasks() -> list[dict]:
     with open("data/tasks.json", "r") as file:
