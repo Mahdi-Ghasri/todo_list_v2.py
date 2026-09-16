@@ -8,6 +8,7 @@ class Task:
       self.title = title
       self.status = status
       self.created_at = datetime.now().strftime("%Y-%m-%d%H:%M") 
+      
 
     def to_dict(self) -> dict:
        return {

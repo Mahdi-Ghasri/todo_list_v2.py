@@ -16,13 +16,17 @@ class TodoList:
             
         self.tasks.append(task)
         save_tasks(self.tasks)
+        
 
     def delete(self, task: Task) -> None:
         self.tasks.remove(task)
         save_tasks(self.tasks)
 
+
     def done(self, task: Task) -> None:
         task.status = "done"
+        save_tasks(self.tasks)
+
 
     def list(self) -> list[Task]:
         return self.tasks
