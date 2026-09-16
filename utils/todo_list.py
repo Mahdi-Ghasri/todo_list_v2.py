@@ -16,7 +16,7 @@ class TodoList:
             
         self.tasks.append(task)
         save_tasks(self.tasks)
-        
+
 
     def delete(self, task: Task) -> None:
         self.tasks.remove(task)
@@ -25,6 +25,15 @@ class TodoList:
 
     def done(self, task: Task) -> None:
         task.status = "done"
+        save_tasks(self.tasks)
+
+    def edit(self, task: Task, title: str | None = None, status: str | None = None) -> None:
+        if title is not None:
+            task.title = title
+
+        if status is not None:
+            task.status = status
+
         save_tasks(self.tasks)
 
 
