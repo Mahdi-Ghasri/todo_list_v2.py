@@ -4,29 +4,33 @@ from utils.task import Task
 from utils.todo_list import TodoList
 
 def find_task(todo_list: TodoList, task_id: int) -> Task | None:
-    for task in todo_list.list():
+    for task in todo_list.tasks:
         if task.id == task_id:
             return task
-        return None
+    return None
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Todo List CLI")
+    parser = argparse.ArgumentParser(description = "Todo List CLI")
 
-    subparsers = parser.add_subparsers(dest="command")
+    subparsers = parser.add_subparsers(dest = "command")
 
     add_parser = subparsers.add_parser("add")
     add_parser.add_argument("title")
 
-    subparsers.add_parser("list")
+    list_parser = subparsers.add_parser("list")
+    list_parser.add_argument("--status", choices = ["todo", "done"])
+
 
     done_parser = subparsers.add_parser("done")
-    done_parser.add_argument("id", type=int)
+    done_parser.add_argument("id", type = int)
+
 
     delete_parser = subparsers.add_parser("delete")
-    delete_parser.add_argument("id", type=int)
+    delete_parser.add_argument("id", type = int)
+
 
     edit_parser = subparsers.add_parser("edit")
-    edit_parser.add_argument("id", type=int)
+    edit_parser.add_argument("id", type = int)
     edit_parser.add_argument("--title")
     edit_parser.add_argument("--status")
 
@@ -40,11 +44,12 @@ def main() -> None:
         print(f"Task added with ID: {task.id}")
 
     elif args.command == "list":
-        tasks = todo_list.list()
+        tasks = todo_list.list(args.status)
+
 
         for task in tasks:
             print(f"{task.id}. {task.title} - "f"{task.status} - {task.created_at}"
-)
+    )
 
     elif args.command == "done":
         task = find_task(todo_list, args.id)
@@ -67,9 +72,10 @@ def main() -> None:
             todo_list.edit(
             task,
             title=args.title,
-            status=args.status,
-)
+            status=args.status
+    )
             print(f"Task {task.id} updated.")
 
 if __name__ == "__main__":
     main()
+    
