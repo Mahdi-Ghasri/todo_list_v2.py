@@ -9,6 +9,11 @@ class TodoList:
         self.tasks: list[Task] = [Task.from_dict(data) for data in load_tasks()]
 
     def add(self, task: Task) -> None:
+        if self.tasks:
+            task.id = max(item.id for item in self.tasks) + 1
+        else:
+            task.id = 1
+            
         self.tasks.append(task)
         save_tasks(self.tasks)
 

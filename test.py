@@ -3,11 +3,11 @@ from utils.todo_list import TodoList
 
 todo_list = TodoList()
 
-task = Task(1, "Learn OOP", "todo")
+task = Task(0, "Learn OOP", "todo")
 
 todo_list.add(task)
 
-print(todo_list.list())
+print(task.id)
 
 todo_list.done(task)
 
