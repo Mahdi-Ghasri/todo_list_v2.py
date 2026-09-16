@@ -1,6 +1,6 @@
-from task import Task
-from storage import load_tasks
-from storage import save_tasks
+from .task import Task
+from .storage import load_tasks
+from .storage import save_tasks
 
 class TodoList:
     """ Manage a collection of tasks"""
@@ -10,9 +10,11 @@ class TodoList:
 
     def add(self, task: Task) -> None:
         self.tasks.append(task)
+        save_tasks(self.tasks)
 
     def delete(self, task: Task) -> None:
         self.tasks.remove(task)
+        save_tasks(self.tasks)
 
     def done(self, task: Task) -> None:
         task.status = "done"
