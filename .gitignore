@@ -1,11 +1,16 @@
-.venv/
+Virtual environment
 venv/
+.venv/
 
+Environment variables
+.env
+
+Local task data
+data/tasks.json
+
+Python cache
 pycache/
 *.py[cod]
 
-.env
-
+IDE settings
 .vscode/
-
-data/tasks.json
