@@ -25,3 +25,11 @@ class Task:
        task = cls(data["id"], data["title"], data["status"])
        task.created_at = data["created_at"]
        return task 
+
+
+    def edit(self,title: str | None = None,status: str | None = None,) -> None:
+        if title is not None:
+           self.title = title
+        if status is not None:
+           self.status = status
+

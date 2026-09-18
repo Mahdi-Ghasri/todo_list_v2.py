@@ -2,6 +2,8 @@ import argparse
 
 from utils.task import Task
 from utils.todo_list import TodoList
+from utils.storage import save_tasks
+
 
 def find_task(todo_list: TodoList, task_id: int) -> Task | None:
     for task in todo_list.tasks:
@@ -69,11 +71,11 @@ def main() -> None:
         task = find_task(todo_list, args.id)
 
         if task:
-            todo_list.edit(
-            task,
-            title=args.title,
-            status=args.status
+            task.edit(
+                title=args.title,
+                status=args.status
     )
+            save_tasks(todo_list.tasks)
             print(f"Task {task.id} updated.")
 
 if __name__ == "__main__":
